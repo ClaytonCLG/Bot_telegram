@@ -22,12 +22,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ─── Variáveis de Ambiente ───────────────────────────────────────────────────
-TELEGRAM_API_ID    = int(os.environ['TELEGRAM_API_ID'])
-TELEGRAM_API_HASH  = os.environ['TELEGRAM_API_HASH']
-SESSION_STRING     = os.environ['SESSION_STRING']   # StringSession exportada
-TARGET_GROUP_ID    = int(os.environ['TARGET_GROUP_ID'])
-RECIPIENT_CHAT_ID  = int(os.environ['RECIPIENT_CHAT_ID'])
+# Carregar com .get() para evitar KeyError
+TELEGRAM_API_ID    = int(os.environ.get('TELEGRAM_API_ID', '0'))
+TELEGRAM_API_HASH  = os.environ.get('TELEGRAM_API_HASH', '')
+SESSION_STRING     = os.environ.get('SESSION_STRING', '')   # StringSession exportada
+TARGET_GROUP_ID    = int(os.environ.get('TARGET_GROUP_ID', '0'))
+RECIPIENT_CHAT_ID  = int(os.environ.get('RECIPIENT_CHAT_ID', '0'))
 PORT               = int(os.environ.get('PORT', 8080))
+
+# Validar se as variáveis essenciais foram definidas
+if not TELEGRAM_API_ID or not TELEGRAM_API_HASH or not SESSION_STRING:
+    logger.error('❌ ERRO: Variáveis de ambiente não configuradas!')
+    logger.error(f'TELEGRAM_API_ID: {"✓" if TELEGRAM_API_ID else "✗"}')
+    logger.error(f'TELEGRAM_API_HASH: {"✓" if TELEGRAM_API_HASH else "✗"}')
+    logger.error(f'SESSION_STRING: {"✓" if SESSION_STRING else "✗"}')
+    raise ValueError('Variáveis de ambiente obrigatórias não encontradas!')
 
 logger.info(f"Iniciando bot — porta {PORT}")
 
