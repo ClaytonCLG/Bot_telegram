@@ -1,96 +1,75 @@
 # Bot Telegram - Deployment no Railway
 
-Este é o bot Telegram otimizado para rodar 24/7 no Railway.app.
+Bot Telegram otimizado para rodar 24/7 no Railway.app com todas as variáveis já configuradas!
 
-## 📋 Arquivos Inclusos
+## 📦 Arquivos Inclusos
 
-- **bot.py** - Bot principal com Telethon + Flask API
-- **requirements.txt** - Dependências Python
-- **Procfile** - Configuração para Railway
-- **runtime.txt** - Versão do Python
-- **userbot_server.py** - Servidor alternativo (opcional)
+- `bot.py` - Bot principal (Telethon + Flask)
+- `requirements.txt` - Dependências Python
+- `Procfile` - Configuração para Railway
+- `runtime.txt` - Versão Python
+- `.env` - **Variáveis já configuradas!**
+- `.gitignore` - Arquivo para ignorar no Git
 
 ## 🚀 Como Fazer Deploy
 
-### 1️⃣ Fazer Upload para GitHub
+### Passo 1: Upload para GitHub
 
 1. Acesse seu repositório: https://github.com/ClaytonCLG/Bot_telegram
 2. Clique em **Add file** → **Upload files**
-3. Arraste todos esses arquivos para o GitHub
-4. Commit com mensagem: `"Deploy bot para Railway"`
+3. Arraste TODOS esses arquivos para o GitHub
+4. Commit com mensagem: `"Deploy bot para Railway com variáveis configuradas"`
 
-### 2️⃣ Conectar ao Railway
+### Passo 2: Conectar ao Railway
 
 1. Acesse https://railway.app
-2. Clique em **New Project** → **Deploy from GitHub**
-3. Selecione o repositório `ClaytonCLG/Bot_telegram`
-4. Railway detectará automaticamente o `Procfile`
+2. Clique em **New Project** → **Deploy from GitHub repo**
+3. Selecione `ClaytonCLG/Bot_telegram`
+4. Railway detectará o `Procfile` automaticamente
 
-### 3️⃣ Configurar Variáveis de Ambiente
+### Passo 3: Configurar Variáveis no Railway
 
-No painel do Railway, vá para **Variables** e adicione:
+⚠️ **IMPORTANTE:** As variáveis já estão no arquivo `.env`, mas o Railway NÃO lê `.env` automaticamente!
+
+Você precisa adicionar manualmente no painel do Railway:
+
+1. Vá para **Variables**
+2. Clique em **New Variable** e adicione:
 
 ```
-TELEGRAM_API_ID=seu_api_id
-TELEGRAM_API_HASH=seu_api_hash
-SESSION_STRING=sua_session_string
-TARGET_GROUP_ID=id_do_grupo_bonaparte
-RECIPIENT_CHAT_ID=id_da_dionara
+TELEGRAM_API_ID=36263007
+TELEGRAM_API_HASH=9c9769a227e52ef9a197c43cd67f167f
+SESSION_STRING=1AZWarzMBu15noJ--xOAuqqCcOSfYepW3U3nagr8HDIMGMk9fn0GypmP-YNyVgO88BZZZUQG0FQsIpxKeySkp9BQtLXaK0rqd5xj8QevvTPeO8JVAELxMPyULhYV0pBfVW6wzbSH58Gk8u7ZFYlAz-kY5q8sH4nXjfdBT68eL8U9wrVhIbpHu1Kb7h42cju1O9xVkaA8d6VKha3KnOknuYZ7UV_aRJGOeMz5sIMosuECBMBSp74YWDDeeQa4Ri1W73LPJPbT6etQLI-DsJ3H3Z5SrWryjhPyNTLzRGGBnuSmSH8jY5PXqR58jIs14j_26q697LtWOvBG_vo6mWCJnTbMTo3xxMsM=
+TARGET_GROUP_ID=-100395756781
+RECIPIENT_CHAT_ID=777284414
 PORT=8080
 ```
 
-**Como obter cada uma:**
+3. Clique em **Deploy** ou **Redeploy**
 
-- **TELEGRAM_API_ID** e **TELEGRAM_API_HASH**: https://my.telegram.org/apps
-- **SESSION_STRING**: Já foi exportada (você tem)
-- **TARGET_GROUP_ID**: ID do grupo GRUPO_BONAPARTE
-- **RECIPIENT_CHAT_ID**: ID da Dionara (geralmente negativo para grupos)
-- **PORT**: Deixe como 8080 (Railway atribui automaticamente)
+### Passo 4: Verificar Deploy
 
-### 4️⃣ Fazer Deploy
+Aguarde 2-3 minutos e verifique os logs. Deve aparecer:
+```
+✅ Conectado ao Telegram!
+✅ Event handler registrado! 🟢 Aguardando mensagens...
+```
 
-1. Clique em **Deploy** no painel do Railway
-2. Aguarde 2-3 minutos
-3. Verifique os logs para confirmar conexão
-
-## 📡 Endpoints da API
-
-Após deploy, você pode acessar:
-
-- **Health Check**: `GET /api/health`
-- **Status do Bot**: `GET /api/bot/status`
-- **Iniciar Bot**: `POST /api/bot/start`
-- **Parar Bot**: `POST /api/bot/stop`
-- **Histórico de Tarefas**: `GET /api/tasks`
-- **Baixar Imagem**: `GET /api/image?path=/caminho/da/imagem`
-
-## ✅ Verificar se está Funcionando
+## ✅ Testar
 
 ```bash
 curl https://seu-app-railway.up.railway.app/api/health
 ```
 
-Deve retornar: `{"status": "ok", "timestamp": "..."}`
+Deve retornar:
+```json
+{"status": "ok", "timestamp": "..."}
+```
 
-## 🔧 Troubleshooting
+## 🎉 Pronto!
 
-**Bot não conecta?**
-- Verifique SESSION_STRING (não pode estar expirada)
-- Confirme TELEGRAM_API_ID e TELEGRAM_API_HASH
-
-**Não recebe mensagens?**
-- Verifique TARGET_GROUP_ID (deve ser negativo: -100123456789)
-- Confirme que o bot está no grupo
-
-**Erro de permissão?**
-- SESSION_STRING pode estar expirada
-- Gere uma nova sessão localmente e atualize
-
-## 📱 Mobile App
-
-A aplicação mobile (Expo/React Native) já está configurada para se conectar a este bot.
-Atualize a URL do servidor nas configurações do app para: `https://seu-app-railway.up.railway.app`
+Seu bot está rodando 24/7 no Railway! 🚀
 
 ---
 
-**Pronto! 🎉 O bot agora rodará 24/7 no Railway!**
+**Desenvolvido com ❤️ para automação do Telegram**
