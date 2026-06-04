@@ -1,0 +1,29 @@
+# Ambiente
+.env
+.env.local
+.env.*.local
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+logs/
+
+# Screenshots
+screenshots/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Dependências
+venv/
+env/
+.venv/
