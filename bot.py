@@ -30,13 +30,13 @@ TARGET_GROUP_ID    = int(os.environ.get('TARGET_GROUP_ID', '0'))
 RECIPIENT_CHAT_ID  = int(os.environ.get('RECIPIENT_CHAT_ID', '0'))
 PORT               = int(os.environ.get('PORT', 8080))
 
-# Validar se as variáveis essenciais foram definidas
-if not TELEGRAM_API_ID or not TELEGRAM_API_HASH or not SESSION_STRING:
-    logger.error('❌ ERRO: Variáveis de ambiente não configuradas!')
-    logger.error(f'TELEGRAM_API_ID: {"✓" if TELEGRAM_API_ID else "✗"}')
-    logger.error(f'TELEGRAM_API_HASH: {"✓" if TELEGRAM_API_HASH else "✗"}')
-    logger.error(f'SESSION_STRING: {"✓" if SESSION_STRING else "✗"}')
-    raise ValueError('Variáveis de ambiente obrigatórias não encontradas!')
+# Log das variáveis carregadas
+logger.info(f'✓ TELEGRAM_API_ID: {"OK" if TELEGRAM_API_ID else "FALTANDO"}')
+logger.info(f'✓ TELEGRAM_API_HASH: {"OK" if TELEGRAM_API_HASH else "FALTANDO"}')
+logger.info(f'✓ SESSION_STRING: {"OK" if SESSION_STRING else "FALTANDO"}')
+logger.info(f'✓ TARGET_GROUP_ID: {TARGET_GROUP_ID}')
+logger.info(f'✓ RECIPIENT_CHAT_ID: {RECIPIENT_CHAT_ID}')
+logger.info(f'✓ PORT: {PORT}')
 
 logger.info(f"Iniciando bot — porta {PORT}")
 
